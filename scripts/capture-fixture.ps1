@@ -13,8 +13,7 @@ try {
     xperf -on PROC_THREAD+CSWITCH+DISK_IO+DISK_IO_INIT+FILE_IO+FILE_IO_INIT -f $absolute
     Start-Sleep -Milliseconds 250
     [IO.File]::WriteAllBytes($temp, $buffer)
-    using namespace System.IO
-    $stream = [File]::Open($temp, [FileMode]::Open, [FileAccess]::ReadWrite, [FileShare]::ReadWrite)
+    $stream = [IO.File]::Open($temp, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::ReadWrite)
     try {
         for ($i = 0; $i -lt 20; $i++) {
             $stream.Position = 0
